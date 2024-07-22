@@ -8,32 +8,44 @@ import { createUser } from "../../../axios/userAxios";
 
 const SignupForm = () => {
   const initialFormData = {
-    firstname: "",
-    lastname: "",
+    firstName: "",
+    lastName: "",
     phone: "",
     address: "",
     email: "",
     password: "",
-    confirmpassword: "",
+    confirmPassword: "",
   };
 
   const { formData, setFormData, handleOnChange } = useForm(initialFormData);
   // const { confirmpassword, ...rest } = formData;
-  const { firstname, lastname, phone, address, email, password } = formData;
+  const {
+    firstName,
+    lastName,
+    phone,
+    address,
+    email,
+    password,
+    confirmPassword,
+  } = formData;
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    if (password !== confirmpassword) {
+    if (password !== confirmPassword) {
       return toast.error("Password and Confirm PassWord do not match");
     }
     const result = await createUser({
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       phone,
       address,
       email,
       password,
     });
+    console.log(result);
+    if (result.status === "success") {
+      return toast.success(`User Created: ${result.message}`);
+    }
   };
   return (
     <Container className="p-4 border shadow-lg rounded-4">
