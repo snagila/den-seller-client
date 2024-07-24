@@ -36,3 +36,32 @@ export const loginUser = async (formData) => {
     console.log(error.message);
   }
 };
+
+// GET USER
+export const getUser = async () => {
+  try {
+    const response = await axios.get(USER_API_URL, {
+      headers: { Authorization: sessionStorage.getItem("accessJWT") },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// AUTO LOGIN
+export const getNewAccessJWT = async (refreshJWT) => {
+  try {
+    const response = await axios.post(
+      `${USER_API_URL}/accessJWT`,
+      {},
+      {
+        headers: { Authorization: refreshJWT },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
