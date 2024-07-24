@@ -1,10 +1,10 @@
-import React from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, Col, Container, Form, Row, Spinner } from "react-bootstrap";
 import { signupFormFields } from "./signupFormFields";
-import CustomInput from "../../customInput/CustomInput";
 import { useForm } from "../../../hooks/useForm";
 import { toast } from "react-toastify";
 import { createUser } from "../../../axios/userAxios";
+import CustomInput from "../CustomInput";
 
 const SignupForm = () => {
   const initialFormData = {
@@ -16,9 +16,10 @@ const SignupForm = () => {
     password: "",
     confirmPassword: "",
   };
-
+  const [spinner, setSpinner] = useState(false);
   const { formData, setFormData, handleOnChange } = useForm(initialFormData);
   // const { confirmpassword, ...rest } = formData;
+
   const {
     firstName,
     lastName,
@@ -31,6 +32,7 @@ const SignupForm = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    setSpinner(true);
     if (password !== confirmPassword) {
       return toast.error("Password and Confirm PassWord do not match");
     }
@@ -42,11 +44,17 @@ const SignupForm = () => {
       email,
       password,
     });
-    console.log(result);
-    if (result.status === "success") {
+    setSpinner(false);
+
+    if (result?.status === "error") {
+      toast.error(result.message);
+    }
+    if (result?.status === "success") {
       return toast.success(`User Created: ${result.message}`);
     }
+    setFormData(initialFormData);
   };
+
   return (
     <Container className="p-4 border shadow-lg rounded-4">
       <Form onSubmit={handleOnSubmit}>
@@ -72,8 +80,12 @@ const SignupForm = () => {
             </Col>
           ))}
         </Row>
-        <Button className="btn-lg w-100 mt-4" type="submit">
-          SignUp
+        <Button className="btn-lg w-100 mt-4" type="submit" disabled={spinner}>
+          {spinner ? (
+            <Spinner animation="border" variant="primary" />
+          ) : (
+            "Sign Up"
+          )}
         </Button>
       </Form>
     </Container>
