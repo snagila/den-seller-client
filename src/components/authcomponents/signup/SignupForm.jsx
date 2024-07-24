@@ -50,9 +50,9 @@ const SignupForm = () => {
       toast.error(result.message);
     }
     if (result?.status === "success") {
+      setFormData(initialFormData);
       return toast.success(`User Created: ${result.message}`);
     }
-    setFormData(initialFormData);
   };
 
   return (

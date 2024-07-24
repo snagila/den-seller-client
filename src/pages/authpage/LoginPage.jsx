@@ -1,6 +1,6 @@
 import { Badge, Col, Container, Image, Row, Stack } from "react-bootstrap";
 import adminAuthImage from "../../assets/adminAuthImage.svg";
-import LoginForm from "../../components/authcomponents/LoginForm";
+import LoginForm from "../../components/authcomponents/login/LoginForm";
 
 const LoginPage = () => {
   return (

@@ -26,3 +26,13 @@ export const verifyUser = async (verifyUserObj) => {
     console.log(error.message);
   }
 };
+
+// LOGIN USER
+export const loginUser = async (formData) => {
+  try {
+    const response = await axios.post(`${USER_API_URL}/login`, formData);
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};

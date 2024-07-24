@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import SignupPage from "./pages/authpage/SignupPage";
 import VerifyEmailPage from "./pages/authpage/VerifyEmailPage";
 import LoginPage from "./pages/authpage/LoginPage";
+import ResetPassword from "./components/authcomponents/forgotPassword/ResetPassword";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/verify-email" element={<VerifyEmailPage />} />
+        <Route path="reset-password" element={<ResetPassword />} />
       </Routes>
       <ToastContainer />
     </>
