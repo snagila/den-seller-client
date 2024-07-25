@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Container, Form, Stack } from "react-bootstrap";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { newPassword } from "../../axios/userAxios";
 import { toast } from "react-toastify";
 
@@ -20,13 +20,16 @@ const NewPasswordReset = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  console.log(formData);
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       return toast.error("Passwords do not match.");
     }
     const result = await newPassword({ formData, token, userEmail });
+    result?.status === "success"
+      ? toast.success(result.message)
+      : toast.error(result.message);
   };
   return (
     <>
@@ -77,6 +80,7 @@ const NewPasswordReset = () => {
               Reset Password
             </Button>
           </Form>
+          <Link to="/"> Login Now</Link>
         </Stack>
       </Container>
     </>

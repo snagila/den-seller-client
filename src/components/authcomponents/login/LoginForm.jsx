@@ -55,17 +55,16 @@ const LoginForm = () => {
   };
 
   useEffect(() => {
-    // if the user exists,navigate to admin homepage
-    if (user._id) {
-      navigate("/admin");
-    }
-
     // if no tokens, keep them in loginPage
     if (
       !sessionStorage.getItem("accessJWT") &&
       !localStorage.getItem("refreshJWT")
     ) {
       return;
+    }
+    // if the user exists,navigate to admin homepage
+    if (user._id) {
+      navigate("/admin");
     }
 
     // if no access token but have refresh token
@@ -108,6 +107,9 @@ const LoginForm = () => {
               "Login"
             )}
           </Button>
+          <p className="pt-2">
+            Don't have an account <Link to="/signup">Signup now</Link>
+          </p>
           <p className="pt-2">
             Forgot Password? <Link to="/reset-password">Reset Password</Link>
           </p>
