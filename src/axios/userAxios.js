@@ -65,3 +65,29 @@ export const getNewAccessJWT = async (refreshJWT) => {
     console.log(error);
   }
 };
+
+// RESET PASSWORD EMAIL PART
+export const resetPassword = async (formData) => {
+  try {
+    const response = await axios.post(
+      `${USER_API_URL}/reset-password`,
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+// ENTER NEW PASSWORD PART
+export const newPassword = async (data) => {
+  try {
+    const response = await axios.post(
+      `${USER_API_URL}/newpassword-reset`,
+      data
+    );
+    return resetPassword.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};

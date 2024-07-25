@@ -109,7 +109,7 @@ const LoginForm = () => {
             )}
           </Button>
           <p className="pt-2">
-            Forgot Password? <Link to="reset-password">Reset Password</Link>
+            Forgot Password? <Link to="/reset-password">Reset Password</Link>
           </p>
         </Form>
       </Container>
