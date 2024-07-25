@@ -27,6 +27,7 @@ const NewPasswordReset = () => {
       return toast.error("Passwords do not match.");
     }
     const result = await newPassword({ formData, token, userEmail });
+    console.log(result);
     result?.status === "success"
       ? toast.success(result.message)
       : toast.error(result.message);

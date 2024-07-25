@@ -86,7 +86,7 @@ export const newPassword = async (data) => {
       `${USER_API_URL}/newpassword-reset`,
       data
     );
-    return resetPassword.data;
+    return response.data;
   } catch (error) {
     console.log(error.message);
   }
