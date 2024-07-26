@@ -96,8 +96,10 @@ const AdminPrivateRoutes = ({ children }) => {
           </Col>
 
           {/* this is the multipage content side */}
-          <Col>
-            <Outlet />
+          <Col style={{ marginLeft: "25%" }}>
+            <div className="vh-100 vw-90 pt-4">
+              <Outlet />
+            </div>
           </Col>
         </Row>
       </Container>

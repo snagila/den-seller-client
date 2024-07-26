@@ -8,6 +8,8 @@ import ResetPassword from "./pages/authpage/ResetPassword";
 import NewPasswordReset from "./pages/authpage/NewPasswordReset";
 import PrivateAdminRoute from "./components/adminPrivateRoutes/PrivateAdminRoute";
 import AdminLayout from "./components/adminPrivateRoutes/AdminLayout";
+import CategoriesPage from "./pages/category/CategoriesPage";
+import NewCategoryPage from "./pages/category/NewCategoryPage";
 
 function App() {
   return (
@@ -28,10 +30,14 @@ function App() {
           path="/admin"
           element={
             <PrivateAdminRoute>
-              <AdminLayout />
+              {" "}
+              <AdminLayout />{" "}
             </PrivateAdminRoute>
           }
-        ></Route>
+        >
+          <Route path="/admin/categories" element={<CategoriesPage />} />
+          <Route path="new-category" element={<NewCategoryPage />} />
+        </Route>
       </Routes>
 
       <ToastContainer />
