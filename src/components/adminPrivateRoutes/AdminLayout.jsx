@@ -10,7 +10,10 @@ import {
 } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { getUserAction } from "../../redux/userRedux/userActions";
+import {
+  getUserAction,
+  logoutUserAction,
+} from "../../redux/userRedux/userActions";
 import SidebarItem from "./SidebarItem";
 
 const AdminPrivateRoutes = ({ children }) => {
@@ -20,7 +23,9 @@ const AdminPrivateRoutes = ({ children }) => {
 
   const [activeItem, setActiveItem] = useState("Dashboard");
 
-  const handleLogout = () => {};
+  const handleLogout = () => {
+    dispatch(logoutUserAction(email));
+  };
 
   useEffect(() => {
     dispatch(getUserAction());

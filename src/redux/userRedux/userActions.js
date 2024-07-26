@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import { getNewAccessJWT, getUser } from "../../axios/userAxios";
+import { getNewAccessJWT, getUser, logoutUser } from "../../axios/userAxios";
 import { setUser } from "./userSlice";
 
 // GET THE USER
@@ -27,3 +27,19 @@ export const getUserAction = () => async (dispatch) => {
 //     dispatch(getUserAction());
 //   }
 // };
+
+// LOGOUT USER ACTION
+export const logoutUserAction = (email) => async (dispatch) => {
+  // call axios function to delete sessions and users refresh token
+  const result = await logoutUser(email);
+  if (result?.status === "success") {
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("refreshJWT");
+
+    // clear state
+    dispatch(setUser({}));
+
+    return toast.success(result.message);
+  }
+  return toast.error(result?.message);
+};

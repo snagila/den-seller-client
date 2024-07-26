@@ -91,3 +91,13 @@ export const newPassword = async (data) => {
     console.log(error.message);
   }
 };
+
+// LOGOUT USER
+export const logoutUser = async (email) => {
+  try {
+    const response = await axios.post(`${USER_API_URL}/logout`, { email });
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
