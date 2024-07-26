@@ -4,11 +4,10 @@ import "react-toastify/dist/ReactToastify.css";
 import SignupPage from "./pages/authpage/SignupPage";
 import VerifyEmailPage from "./pages/authpage/VerifyEmailPage";
 import LoginPage from "./pages/authpage/LoginPage";
-
-import AdminPrivateRoutes from "./components/adminPrivateRoutes/AdminPrivateRoutes";
-import AdminLayout from "./components/adminLayout/AdminLayout";
 import ResetPassword from "./pages/authpage/ResetPassword";
 import NewPasswordReset from "./pages/authpage/NewPasswordReset";
+import PrivateAdminRoute from "./components/adminPrivateRoutes/PrivateAdminRoute";
+import AdminLayout from "./components/adminPrivateRoutes/AdminLayout";
 
 function App() {
   return (
@@ -23,17 +22,18 @@ function App() {
           path="/reset-password/newpassword"
           element={<NewPasswordReset />}
         />
+
+        {/* PRIVATE ROUTE */}
+        <Route
+          path="/admin"
+          element={
+            <PrivateAdminRoute>
+              <AdminLayout />
+            </PrivateAdminRoute>
+          }
+        ></Route>
       </Routes>
 
-      {/* PRIVATE ROUTE */}
-      <Routes
-        path="/admin"
-        element={
-          <AdminPrivateRoutes>
-            <AdminLayout />
-          </AdminPrivateRoutes>
-        }
-      ></Routes>
       <ToastContainer />
     </>
   );

@@ -46,7 +46,6 @@ const LoginForm = () => {
     const refreshJWT = localStorage.getItem("refreshJWT");
 
     const result = await getNewAccessJWT(refreshJWT);
-    console.log(result);
 
     if (result?.status === "success") {
       sessionStorage.setItem("accessJWT", result.data);
@@ -69,8 +68,10 @@ const LoginForm = () => {
 
     // if no access token but have refresh token
     if (
-      !sessionStorage.getItem("accessJWT") &&
-      localStorage.getItem("refreshJWT")
+      (!sessionStorage.getItem("accessJWT") &&
+        localStorage.getItem("refreshJWT")) ||
+      (sessionStorage.getItem("accessJWT") &&
+        localStorage.getItem("refreshJWT"))
     ) {
       autoLogin();
       return;
